@@ -1,23 +1,29 @@
-version: '3'
+# Usage:
+#   docker-compose up --force-recreate
+version: '2.1'
+
 services:
-  selenoid:
-    network_mode: bridge
-    image: aerokube/selenoid:latest-release
+  #--------------#
+  zalenium:
+    image: "${project.artifactId}:${project.version}"
+    container_name: zalenium
+    hostname: zalenium
+    tty: true
     volumes:
-      - "$PWD:/etc/selenoid"
-      - "//var/run/docker.sock:/var/run/docker.sock"
-      - "$PWD:/opt/selenoid/video"
-      - "$PWD:/opt/selenoid/logs"
+      - ${project.build.directory}/videos:/home/seluser/videos
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+    ports:
+      - 4444:4444
+    command: >
+      start --desiredContainers 2
+            --maxDockerSeleniumContainers 8
+            --screenWidth 800 --screenHeight 600
+            --timeZone "Europe/Berlin"
+            --videoRecordingEnabled true
+            --sauceLabsEnabled true
+            --startTunnel true
     environment:
-      - OVERRIDE_VIDEO_OUTPUT_DIR=$PWD
-    command: ["-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs"]
-    ports:
-      - "4444:4444"
-  selenoid-ui:
-    image: "aerokube/selenoid-ui:latest"
-    network_mode: bridge
-    links:
-      - selenoid
-    ports:
-      - "8080:8080"
-    command: ["--selenoid-uri", "http://selenoid:4444"]
+      - HOST_UID
+      - HOST_GID
+      
