@@ -38,4 +38,3 @@ services:
       - test-app
     command: >
       ./wait-for-grid.sh -- /opt/app/node_modules/.bin/wdio wdio.conf.js --host zalenium --baseUrl http://test-app:3000
-© 2020 GitHub, Inc.
