@@ -5,9 +5,9 @@ public class CapabilityFactory {
     public Capabilities capabilities;
  
     public Capabilities getCapabilities (String browser) {
-        if (browser.equals("firefox"))
+        if (browser.equals("chrome"))
         	
-            capabilities =  OptionsManager.getFirefoxOptions().toCapabilities();
+            capabilities =  (Capabilities) OptionsManager.getChromeOptions();
        return capabilities;
     }
 }

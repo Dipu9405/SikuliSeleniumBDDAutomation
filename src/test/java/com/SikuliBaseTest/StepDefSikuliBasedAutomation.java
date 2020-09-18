@@ -4,11 +4,13 @@ import java.awt.Rectangle;
 import java.io.File;
 import java.net.URI;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,6 +18,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.sikuli.basics.Settings;
@@ -48,7 +52,7 @@ public class StepDefSikuliBasedAutomation{
 		// manually open patterncompare/mainimage.png full screen using MS photo viewer
 		try{
 			Screen screen 					= new Screen(0);
-			Pattern pattern 					= new Pattern("patterncompare//partialimage.png").similar(0.8f);
+			Pattern pattern 					= new Pattern("C:\\Users\\DarkMatter\\workspace\\SikuliSeleniumBDDAutomation\\patterncompare\\partialimage.png").similar(0.8f);
 			Region expectedRegion	= screen.exists(pattern);
 			if(null != expectedRegion) {expectedRegion.rightClick(pattern);}
 			else {System.out.println("ERROR :: Either required similarity is very high or image to be compared does not exists");}
@@ -64,7 +68,7 @@ public class StepDefSikuliBasedAutomation{
 			Screen screen 					= new Screen(0);
 			Region  smallRegion 	    	= new Screen(0).setRect(600, 500, 222, 111);
 			smallRegion.highlight(2.5f);
-			String partialImage 			= "patterncompare\\partialimage.png";
+			String partialImage 			= "C:\\Users\\DarkMatter\\workspace\\SikuliSeleniumBDDAutomation\\patterncompare\\partialimage.png";
 			//screen.find(new Pattern(partialImage).exact()).rightClick();
 			Region sampleRegion  		= screen;
 			// manuall open patterncompare/mainimage.png full screen/ reduced scale using MS photo viewer
@@ -92,8 +96,8 @@ public class StepDefSikuliBasedAutomation{
 		System.out.println("INFO :: ------------------------ X ------------------------" + currentRegion.getX());
 		System.out.println("INFO :: ------------------------ Y ------------------------" + currentRegion.getY());
 		
-		//App.open("https://deedu-my.sharepoint.com/:x:/g/personal/m4269_ioffice_site/EaW6_4b550ZNs_E2HfFf4iEBIvrLQmiBZE4yfLmOYLc8kQ?e=eAbMQ0");
-		App.open("C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.EXE  ScreenClassTestAssets\\simple_tests.xlsx");
+		App.open("https://deedu-my.sharepoint.com/:x:/g/personal/m4269_ioffice_site/EaW6_4b550ZNs_E2HfFf4iEBIvrLQmiBZE4yfLmOYLc8kQ?e=eAbMQ0");
+		App.open("C:\\Program Files\\Microsoft Office\\Office14\\EXCEL.EXE  ScreenClassTestAssets\\simple_tests.xlsx");
 		delay(2500);
 		Thread.sleep(8000);	
 		/*
@@ -135,24 +139,28 @@ public class StepDefSikuliBasedAutomation{
 		Settings.ObserveScanRate 	= 0.3f;  		// 0.3f/sec default
 		Settings.OcrTextSearch         = true;
 		
-		//App.open("https://deedu-my.sharepoint.com/:x:/g/personal/m4269_ioffice_site/EaW6_4b550ZNs_E2HfFf4iEBIvrLQmiBZE4yfLmOYLc8kQ?e=eAbMQ0");
+		App.open("https://deedu-my.sharepoint.com/:x:/g/personal/m4269_ioffice_site/EaW6_4b550ZNs_E2HfFf4iEBIvrLQmiBZE4yfLmOYLc8kQ?e=eAbMQ0");
 		delay(2500);
-		App.open("C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.EXE  ScreenClassTestAssets\\simple_tests.xlsx");
+		
+		App.open("C:\\Program Files\\Microsoft Office\\Office14\\EXCEL.EXE  ScreenClassTestAssets\\simple_tests.xlsx");
 		delay(2500);
 		Thread.sleep(8000);	
-		/*
-		 * String filepath1 =
-		 * "C:\\WorkSpace\\imademethink_sikulix_automation-master\\ScreenClassTestAssets\\";
-		 * String filepath =
-		 * "C:\\WorkSpace\\imademethink_sikulix_automation-master\\ScreenClassTestAssets\\";
-		 * Thread.sleep(10000); Screen screen = new Screen(); Pattern pattern1 = new
-		 * Pattern(filepath1 + "Excel Open dialog Region.PNG"); Pattern pattern = new
-		 * Pattern(filepath + "Excel Open dialog.PNG"); screen.wait(pattern1,20); Region
-		 * region = screen.exists(pattern1); if(region!=null) { Region R =
-		 * screen.find(pattern); R.mouseMove(pattern); R.click(pattern);
-		 * 
-		 * }
-		 */
+//		
+//		  String filepath1 = "C:\\Users\\DarkMatter\\workspace\\SikuliSeleniumBDDAutomation\\ScreenClassTestAssets\\ScreenClassTestAssets\\";
+//		  
+//		  String filepath = "C:\\Users\\DarkMatter\\workspace\\SikuliSeleniumBDDAutomation\\ScreenClassTestAssets\\ScreenClassTestAssets\\";
+//		  
+//		  Thread.sleep(10000); Screen screen = new Screen(); 
+//		  Pattern pattern1 = new Pattern(filepath1 + "Excel Open dialog Region.PNG");
+//		  Pattern pattern = new Pattern(filepath + "Excel Open dialog.PNG");
+//		  screen.wait(pattern1,20); 
+//		  Region  region = screen.exists(pattern1); 
+//		  if(region!=null) 
+//		  { 
+//			  Region R = screen.find(pattern); R.mouseMove(pattern); R.click(pattern);
+//		  
+//		  }
+		 
 		App.focus("EXCEL");
 
 		// find text using Region class object (full screen)
@@ -175,17 +183,20 @@ public class StepDefSikuliBasedAutomation{
 
 	public void RegionClassTest3() throws Throwable{
 		// to click, right click, double click using region class object		
-		//App.open("https://deedu-my.sharepoint.com/:x:/g/personal/m4269_ioffice_site/EaW6_4b550ZNs_E2HfFf4iEBIvrLQmiBZE4yfLmOYLc8kQ?e=eAbMQ0");
-		App.open("C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.EXE  ScreenClassTestAssets\\simple_tests.xlsx");
+		App.open("https://deedu-my.sharepoint.com/:x:/g/personal/m4269_ioffice_site/EaW6_4b550ZNs_E2HfFf4iEBIvrLQmiBZE4yfLmOYLc8kQ?e=eAbMQ0");
+		App.open("C:\\Program Files\\Microsoft Office\\Office14\\EXCEL.EXE  ScreenClassTestAssets\\simple_tests.xlsx");
 		delay(2500);
-		//App.open("C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.EXE  ScreenClassTestAssets\\simple_tests.xlsx");
-		delay(2500);
-		Thread.sleep(8000);	
 		/*
+		 * //App.
+		 * open("C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.EXE  ScreenClassTestAssets\\simple_tests.xlsx"
+		 * ); delay(2500); Thread.sleep(8000);
+		 * 
 		 * String filepath1 =
-		 * "C:\\WorkSpace\\imademethink_sikulix_automation-master\\ScreenClassTestAssets\\";
+		 * "C:\\Users\\DarkMatter\\workspace\\SikuliSeleniumBDDAutomation\\ScreenClassTestAssets\\";
+		 * 
 		 * String filepath =
-		 * "C:\\WorkSpace\\imademethink_sikulix_automation-master\\ScreenClassTestAssets\\";
+		 * "C:\\Users\\DarkMatter\\workspace\\SikuliSeleniumBDDAutomation\\ScreenClassTestAssets\\";
+		 * 
 		 * Thread.sleep(10000); Screen screen = new Screen(); Pattern pattern1 = new
 		 * Pattern(filepath1 + "Excel Open dialog Region.PNG"); Pattern pattern = new
 		 * Pattern(filepath + "Excel Open dialog.PNG"); screen.wait(pattern1,20); Region
@@ -194,6 +205,7 @@ public class StepDefSikuliBasedAutomation{
 		 * 
 		 * }
 		 */
+		 
 		App.focus("EXCEL");
 
 		Region fullRegion         = new Screen(0);
@@ -232,7 +244,7 @@ public class StepDefSikuliBasedAutomation{
 		currentRegion.setSize(300, 400);
 		currentRegion.saveScreenCapture("captured_image");
 		//App.open("https://deedu-my.sharepoint.com/:x:/g/personal/m4269_ioffice_site/EaW6_4b550ZNs_E2HfFf4iEBIvrLQmiBZE4yfLmOYLc8kQ?e=eAbMQ0");
-		App.open("C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.EXE  ScreenClassTestAssets\\simple_tests.xlsx");
+		App.open("C:\\Program Files\\Microsoft Office\\Office14\\EXCEL.EXE  ScreenClassTestAssets\\simple_tests.xlsx");
 		//App.open("C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.EXE  ScreenClassTestAssets\\simple_tests.xlsx");
 		delay(2500);
 		Thread.sleep(8000);	
@@ -314,7 +326,7 @@ public class StepDefSikuliBasedAutomation{
 		// open ms excel with mentoned xls file
 		//App.open("https://deedu-my.sharepoint.com/:x:/g/personal/m4269_ioffice_site/EaW6_4b550ZNs_E2HfFf4iEBIvrLQmiBZE4yfLmOYLc8kQ?e=eAbMQ0");
 		
-		App.open("C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.EXE  ScreenClassTestAssets\\simple_tests.xlsx");
+		App.open("C:\\Program Files\\Microsoft Office\\Office14\\EXCEL.EXE  ScreenClassTestAssets\\simple_tests.xlsx");
 		delay(2500);
 		Thread.sleep(8000);	
 		/*
@@ -390,32 +402,82 @@ public class StepDefSikuliBasedAutomation{
 		quitChrome();
 	}
 	
+	
+	public void ScreenClassTest5() throws InterruptedException{
+		// other operations on screen object e.g. wait, type, click
+		
+		initIE();
+		
+		delay(5000);
+		try{
+			Screen mainScreen 						= new Screen(0);
+			String demoWebSiteImages		= "C:\\Users\\DarkMatter\\workspace\\SikuliSeleniumBDDAutomation\\ScreenClassTestAssets\\phptravellogin"; 
+			String demoUserIconImg 			= demoWebSiteImages + "\\user_icon.png";
+			String demoUserEmailImg 			= demoWebSiteImages + "\\user_email.png";
+			String demoUserPasswordImg 	= demoWebSiteImages + "\\user_password.png";
+			String demoLoginsubmitImg 		= demoWebSiteImages + "\\user_submit.png";
+			
+			// assuming matching image is found (with acceptable tolerance) 
+			mainScreen.wait(demoUserIconImg);
+			// assuming matching image is found (with acceptable tolerance) 
+			mainScreen.type(demoUserEmailImg,"dummy@dummy.com");
+			// assuming matching image is found (with acceptable tolerance) 
+			mainScreen.type(demoUserPasswordImg,"dummy1234");
+			// assuming matching image is found (with acceptable tolerance) 
+			mainScreen.click(demoLoginsubmitImg);			
+		}catch(Exception e){}
+		quitIE();
+	}
+	
+	@SuppressWarnings("deprecation")
 	@When("^Sikulix automation using Screen class$")
 	public void Sikulix_automation_using_Screen_class() throws Throwable{
 		
-		//ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
-		   
-		String driverPath = "C://WorkSpace//SikuliBaseTest-Framework//src//test//resources//BrowserDriver//geckodriver.exe";
+		
+		
+		String driverPath = "src\\test\\resources\\BrowserDriver\\geckodriver.exe";
 		System.setProperty("webdriver.gecko.driver", driverPath);
+//		FirefoxOptions options = new FirefoxOptions();
+		 DesiredCapabilities caps = new DesiredCapabilities();
+		    
+		    caps.setCapability("os", "Windows");
+		    caps.setCapability("os_version", "10");
+		    caps.setCapability("browser", "Firefox");
+		    caps.setCapability("browser_version", "81");
+		    
+		   
+		    WebDriver driver = new FirefoxDriver(caps);
+		    
+		    driver.get("http://www.google.com");
 		
-		FirefoxProfile profile=new FirefoxProfile(new File("C://Users//dchow//AppData//Roaming//Mozilla//Firefox//Profiles"));
-		
-		FirefoxOptions firefoxOptions = new FirefoxOptions();		
-		DesiredCapabilities capabilities = new DesiredCapabilities();	
-		capabilities.setBrowserName("firefox");
-		capabilities.setVersion("69.0");
-		capabilities.setCapability("enableVNC", true);
-		capabilities.setCapability("enableVideo", true);
+//		//ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
+//		 
+//		String driverPath = "src\\test\\resources\\BrowserDriver\\geckodriver.exe";
+//		System.setProperty("webdriver.gecko.driver", driverPath);
+//		FirefoxOptions options = new FirefoxOptions();
+//		//options.setBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe"); //This is the location where you have installed Firefox on your machine
+// 
+//		//WebDriver driver = new FirefoxDriver(options);
+//		
+//	
+//		
+//		   DesiredCapabilities capabillities = DesiredCapabilities.firefox();
+//       
+//           capabillities.setCapability("platform", Platform.WIN10);
+          
+		//capabilities.setVersion("69.0");
+		//capabilities.setCapability("enableVNC", true);
+		//capabilities.setCapability("enableVideo", true);
 		
 		//capabilities.setVersion("46.0");
-		capabilities.setCapability(FirefoxDriver.PROFILE, profile);
-		URL url = new URL("http://localhost:4444/wd/hub");
-		RemoteWebDriver driver = new  RemoteWebDriver(url,capabilities );
-		driver.get("http://www.yahoo.com");
+		//capabilities.setCapability(FirefoxDriver.PROFILE, profile);
+		//URL url = new URL("http://localhost:4444/wd/hub");
+		//RemoteWebDriver driver = new  RemoteWebDriver(url,capabilities );
+		//driver.get("http://www.yahoo.com");
 				
 				
-				
-		//driver.get("http://www.google.com");
+		//WebDriver driver = new FirefoxDriver(options);		
+		driver.get("http://www.google.com");
 		//driver.quit();
 		  
 		
@@ -494,11 +556,12 @@ public class StepDefSikuliBasedAutomation{
 	@When("^Sikulix automation using Region class$")
 	public void Sikulix_automation_using_Region_class() throws Throwable, Throwable{
 		System.out.println("INFO :: ------------------------Sikulix_automation_using_Region_class");
-		RegionClassTest1();
-		RegionClassTest2();
+		//RegionClassTest1();
+		ScreenClassTest5();
+		//RegionClassTest2();
 		RegionClassTest3();
-		RegionClassTest4();
-		RegionClassTest5();
+		//RegionClassTest4();
+		//RegionClassTest5();
 	}
 
 	@When("^Sikulix automation using Pattern class$")
@@ -537,6 +600,59 @@ public class StepDefSikuliBasedAutomation{
 	public void delay(int milliSec){
 		try{Thread.sleep(milliSec);}catch(Exception d){}
 	}
+	
+	
+	
+	@SuppressWarnings("deprecation")
+	public void initIE() throws InterruptedException{
+		String browserDriverBasePath = new File("").getAbsoluteFile().toString() + 
+				File.separator + "src" +
+				File.separator + "test" +
+				File.separator + "browserDriver" +
+				File.separator;
+		
+	    String browserDriverBasePathIE 	= browserDriverBasePath + "IEDriverServer.exe";
+		//File chromeDriverExecutable 					= new File( browserDriverBasePathIE);
+	   
+		System.setProperty("webdriver.ie.driver","C:\\Users\\DarkMatter\\workspace\\SikuliSeleniumBDDAutomation\\src\\test\\resources\\BrowserDriver\\IEDriverServer.exe");
+		//it is used to define IE capability 
+		 //DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+		  
+		//capabilities.setCapability(CapabilityType.BROWSER_NAME, "internet explorer");
+		//capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,true);
+
+
+
+		  
+		 //it is used to initialize the IE driver
+		WebDriver objWebdriver = new InternetExplorerDriver();
+		 Thread.sleep(4000);
+		objWebdriver.manage().window().maximize();
+		 Thread.sleep(4000);
+		objWebdriver.get("https://www.yahoo.com");
+		//ChromeOptions objChromeOptions 		= new ChromeOptions();
+		//objChromeOptions.addArguments("--incognito");
+		//DesiredCapabilities chromeCapabilities = DesiredCapabilities.chrome();
+		//chromeCapabilities.setCapability(ChromeOptions.CAPABILITY, objChromeOptions);
+		//objWebdriver 											= new ChromeDriver(chromeCapabilities);
+		//objWebdriver.manage().window().setPosition(new Point(05,05));
+		//objWebdriver.manage().window().setSize(new Dimension(1350,750));
+		
+	
+	}
+
+	public void quitIE(){
+		if(null == objWebdriver) return;
+		objWebdriver.close();
+		objWebdriver.quit();
+	}
+	
+	public void delay1(int milliSec){
+		try{Thread.sleep(milliSec);}catch(Exception d){}
+	}
+	
+	
+	
 	
 }
 

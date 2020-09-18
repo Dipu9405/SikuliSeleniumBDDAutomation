@@ -22,7 +22,9 @@ public class OptionsManager {
     public static FirefoxOptions getFirefoxOptions () {
         FirefoxOptions options = new FirefoxOptions();
         //FirefoxProfile profile = new FirefoxProfile();
-        FirefoxProfile profile=new FirefoxProfile(new File("Local Path to firefox profile folder"));
+       
+		options.setBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe");
+        FirefoxProfile profile=new FirefoxProfile(new File("C://Users//DarkMatter//AppData//Roaming//Mozilla//Firefox//Profiles"));
 		
         //Accept Untrusted Certificates
         profile.setAcceptUntrustedCertificates(true);
